@@ -22,25 +22,28 @@ export const printTeacher: printTeacherFunction = function (
     return `${firstName.charAt(0)}. ${lastName}`;
 };
 
-abstract class StudentClassInterface {
+interface StudentConstructor {
+    new(firstName: string, lastName: string): StudentClassInterface;
+}
+
+interface StudentClassInterface {
+    firstName: string,
+    lastName: string,
+    workOnHomework(): string,
+    displayName(): string
+}
+
+export const StudentClass: StudentConstructor = class StudentClass implements StudentClassInterface {
     firstName: string;
     lastName: string;
-
-    abstract workOnHomework(): string;
-    abstract displayName(): string;
 
     constructor(firstName: string, lastName: string) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-}
-
-export class StudentClass extends StudentClassInterface {
-    firstName: string;
-    lastName: string;
 
     workOnHomework(): string {
-        return "Currently working";
+        return 'Currently working';
     }
 
     displayName(): string {
