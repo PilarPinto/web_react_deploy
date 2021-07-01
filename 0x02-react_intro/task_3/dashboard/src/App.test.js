@@ -1,8 +1,25 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from "./App";
+import { shallow } from 'enzyme';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Testing the behavior of App component", () => {
+    it("App renders without crashing", () => {
+        const wrapper = shallow(<App />);
+        // eslint-disable-next-line jest/valid-expect
+        expect(wrapper.exists());
+    });
+    it("App renders App-header", () => {
+        const wrapper = shallow(<App />);
+        wrapper.update();
+        expect(wrapper.find(".App-header")).toHaveLength(1);
+    });
+    it("App renders App-body", () => {
+        const wrapper = shallow(<App />);
+        wrapper.update();
+        expect(wrapper.find(".App-body")).toHaveLength(1);
+    });
+    it("App renders App-footer", () => {
+        const wrapper = shallow(<App />);
+        wrapper.update();
+        expect(wrapper.find(".App-footer")).toHaveLength(1);
+    });
 });
